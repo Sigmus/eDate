@@ -77,7 +77,7 @@ var eDate =  {
 		});
 	},
 
-	compareDay: function (date1, date2) {
+	diffDays: function (date1, date2) {
 		var
 		cdate1 = this.zeroDay(this.clone(date1)),
 		cdate2 = this.zeroDay(this.clone(date2)),
