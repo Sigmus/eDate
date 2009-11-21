@@ -88,14 +88,15 @@ var eDate =  {
 		return diff / this.units.day;				
 	},
 	
-	isOver18: function (date) {
+	isOverAge: function (date, age) {
 		c = this.getToday();
 		c.setDate(date.getDate());
 		c.setMonth(date.getMonth());
-		c.setFullYear(date.getFullYear() + 18);
+		c.setFullYear(date.getFullYear() + age);
 		if (eDate.getToday().getTime() < c.getTime()) {
 			return false;
 		}
 		return true;
 	}
+	
 };
