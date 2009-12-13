@@ -15,12 +15,25 @@ var eDate =  {
 	},
 	
 	getInput: function (i) {
+		var s;
 		if (i['dd/mm/yyyy']) {
-			var s = i['dd/mm/yyyy'].split('/');
+			s = i['dd/mm/yyyy'].split('/');
 			i.day = s[0]; 
 			i.month = s[1]; 
 			i.year = s[2];
 		}
+		if (i['mm/dd/yyyy']) {
+			s = i['mm/dd/yyyy'].split('/');
+			i.month = s[0];
+			i.day = s[1]; 
+			i.year = s[2];
+		}
+		if (i['yyyy/mm/dd']) {
+			s = i['mm/dd/yyyy'].split('/');
+			i.year = s[0];
+			i.month = s[1];
+			i.day = s[2]; 
+		}		
 		return {
 			day: parseInt(i.day, 10),
 			month: parseInt(i.month, 10) - 1,
@@ -44,6 +57,11 @@ var eDate =  {
 		return (testDateString === inputString);	
 	},
 	
+	getNew: function (i) {
+		var fi = this.getInput(i);
+		return new Date(fi.year, fi.month, fi.day);
+	},
+
 	zeroDay: function (date) {
 		date.setHours(0);
 		date.setMinutes(0);
@@ -51,11 +69,6 @@ var eDate =  {
 		date.setMilliseconds(0);
 		return date;
 	},	
-	
-	getNew: function (i) {
-		var fi = this.getInput(i);
-		return new Date(fi.year, fi.month, fi.day);
-	},
 	
 	getToday: function () {
 		return this.zeroDay(new Date());
@@ -93,7 +106,7 @@ var eDate =  {
 		c.setDate(date.getDate());
 		c.setMonth(date.getMonth());
 		c.setFullYear(date.getFullYear() + age);
-		if (eDate.getToday().getTime() < c.getTime()) {
+		if (this.getToday().getTime() < c.getTime()) {
 			return false;
 		}
 		return true;
