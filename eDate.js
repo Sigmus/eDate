@@ -98,7 +98,7 @@ var eDate =  {
 		if (diff === 0) {
 			return 0;	
 		}
-		return diff / this.units.day;				
+		return Math.round(diff / this.units.day);				
 	},
 	
 	isOverAge: function (date, age) {
