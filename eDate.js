@@ -42,8 +42,13 @@ var eDate =  {
 	},
 	
 	isValid: function (i) {
+		var index, fi = this.getInput(i);
+		for (index in fi) {
+			if (isNaN(fi[index])) {
+				return false;
+			}
+ 		} 
 		var 
-		fi = this.getInput(i),
 		testDate = new Date(fi.year, fi.month, fi.day),
 		testDateString = 
 			testDate.getFullYear().toString() + 
